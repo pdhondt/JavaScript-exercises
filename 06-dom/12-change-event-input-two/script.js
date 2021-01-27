@@ -12,31 +12,35 @@
 (function() {
 
     // your code here
-    var count = 0;
     var numbers = 0;
     document.querySelector("#pass-one").value = "";
 
     document.getElementById("pass-one").addEventListener("input", function() {
 
-        count++;
-        var password = document.querySelector("#pass-one").value;
 
-        for (var i = 0; i < password.length; i++) {
+        var password = document.querySelector("#pass-one").value;
+        var count = password.length;
+        console.log(count);
+
+        for (var i = 0; i < count; i++) {
             if (!isNaN(password.charAt(i))) {
                 numbers += 1;
             }
         }
         if (count >= 8 && numbers >= 2) {
             document.querySelector(".indicator").innerHTML = "ok";
-        } else if (count >= 8){
+        } else if (count >= 8 && numbers < 2){
+            document.querySelector(".indicator").innerHTML = "Not ok";
             alert("Password needs at least 8 characters and at least 2 numbers!")
+        } else {
+            document.querySelector(".indicator").innerHTML = "Not ok";
         }
     })
 
-    document.getElementById("pass-one").addEventListener("keydown", function(event) {
-        if (event.code == 8) {
-            count--;
-        }
-    })
+    //document.getElementById("pass-one").addEventListener("keydown", function(event) {
+    //    if (event.code == 8) {
+    //        count--;
+    //    }
+    //})
 
 })();

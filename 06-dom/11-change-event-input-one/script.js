@@ -15,13 +15,13 @@
     var count = 0;
     document.querySelector("#pass-one").value = "";
 
-    document.getElementById("pass-one").addEventListener("input", function() {
+    document.getElementById("pass-one").addEventListener("keyup", function() {
         count++;
-        if (count < 11) {
-            document.querySelector(".indicator").innerHTML = count + "/10";
-        } else {
+        if (count > 10) {
             alert("Maximum number of characters reached!");
             document.querySelector("#pass-one").disabled = true;
+        } else {
+            document.querySelector(".indicator").innerHTML = count + "/10";
         }
     })
 })();
