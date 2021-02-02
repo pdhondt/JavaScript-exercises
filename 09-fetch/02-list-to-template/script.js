@@ -1,0 +1,40 @@
+/* becode/javascript
+ *
+ * /09-fetch/02-list-to-template/script.js - 11.2: liste vers template
+ *
+ * coded by leny@BeCode
+ * started at 12/05/2019
+ */
+
+// NOTE: don't focus on the existing code structure for now.
+// You will have time to focus on it later.
+
+(() => {
+
+    document.querySelector("#run").addEventListener("click", () => {
+
+            async function fetchHeroes() {
+            let response = await fetch('http://localhost:63342/JavaScript-exercises/_shared/api.json');
+            let heroData = await response.json();
+            //console.table(heroData);
+            //console.log(heroData.heroes[2].abilities);
+
+            heroData.heroes.forEach(hero => {
+
+                let target = document.getElementById("target");
+                let template = document.getElementById("tpl-hero");
+                let content = template.content.cloneNode(true);
+
+                content.querySelector(".name").innerHTML = hero.name;
+                content.querySelector(".alter-ego").innerHTML = hero.alterEgo;
+                content.querySelector(".powers").innerHTML = hero.abilities;
+
+                target.appendChild(content);
+
+            })
+        }
+        fetchHeroes();
+
+    })
+
+})();
